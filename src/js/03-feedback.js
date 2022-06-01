@@ -3,7 +3,7 @@ import throttle from 'lodash.throttle';
 
 const CONTACT_FORM_LOCAL_STORAGE_KEY = 'feedback-form-state';
 const contactFormEl = document.querySelector('.feedback-form');
-const formData = {};
+let formData = {};
 
 const fillContactFormElements = form => {
   const formDataFromLocalStorage = localStorageApi.load(
@@ -36,6 +36,7 @@ const onContactFormSubmit = event => {
   console.log(localStorageApi.load(CONTACT_FORM_LOCAL_STORAGE_KEY));
   localStorageApi.remove(CONTACT_FORM_LOCAL_STORAGE_KEY);
   event.currentTarget.reset();
+  formData = {};
 };
 
 contactFormEl.addEventListener('input', throttle(onCotactFormElChange, 500));
